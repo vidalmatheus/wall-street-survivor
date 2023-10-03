@@ -1,5 +1,6 @@
 from functools import cached_property
 
+
 class Method:
     GET = "GET"
     POST = "POST"

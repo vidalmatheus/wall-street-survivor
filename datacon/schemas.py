@@ -1,5 +1,6 @@
 from ninja import Schema
 
+
 class GetTransactionsSchema(Schema):
     username: str
     password: str

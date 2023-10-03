@@ -1,6 +1,7 @@
-from core.wss.base import BaseRequest, AuthenticatedBaseRequest
-from core.services.response_wrapper_svc import Method
 from bs4 import BeautifulSoup
+
+from core.services.response_wrapper_svc import Method
+from core.wss.base import AuthenticatedBaseRequest, BaseRequest
 
 
 class Login(BaseRequest):
@@ -21,7 +22,16 @@ class GetTransactions(AuthenticatedBaseRequest):
     method = Method.GET
     endpoint = "account/gettransactions"
 
-    def send(self, start_date, end_date, page_index=0, page_size=12, sort_field="CreateDate", sort_direction="DESC", transaction_type=1):
+    def send(
+        self,
+        start_date,
+        end_date,
+        page_index=0,
+        page_size=12,
+        sort_field="CreateDate",
+        sort_direction="DESC",
+        transaction_type=1,
+    ):
         params = {
             "pageIndex": page_index,
             "pageSize": page_size,
