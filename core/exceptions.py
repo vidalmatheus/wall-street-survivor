@@ -1,0 +1,2 @@
+class WssConnectionError(Exception):
+    pass

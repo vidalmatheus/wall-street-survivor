@@ -9,4 +9,3 @@ pytest
 pytest-cov
 uwsgi
 django-extensions
-django-cors-headers
