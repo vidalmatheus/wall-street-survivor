@@ -102,10 +102,14 @@ django==4.2.5 \
     # via
     #   -r requirements.in
     #   django-extensions
+    #   django-memoize
     #   django-ninja
 django-extensions==3.2.3 \
     --hash=sha256:44d27919d04e23b3f40231c4ab7af4e61ce832ef46d610cc650d53e68328410a \
     --hash=sha256:9600b7562f79a92cbf1fde6403c04fee314608fefbb595502e34383ae8203401
+    # via -r requirements.in
+django-memoize==2.3.1 \
+    --hash=sha256:62ac4807710ecf22a7397d008d64d0f798e7230482d4b6072d916cac852a47cd
     # via -r requirements.in
 django-ninja==0.22.2 \
     --hash=sha256:913ebde7571d6a6968c9ac0b9e8a24680c46444d44fdd552f8831dbeede1292c \

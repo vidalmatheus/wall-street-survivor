@@ -1,5 +1,7 @@
 from django.http import JsonResponse
 from ninja import NinjaAPI
+from core.wss.wss_api import WssAPI
+from datacon.schemas import GetTransactionsSchema
 
 api = NinjaAPI()
 
@@ -11,8 +13,10 @@ def hello(request):
     })
 
 
-@api.get("/wallstreetsurvivor")
-def get_last_transactions(request):
-    return JsonResponse({
-        "message": "WallStreet"
-    })
+@api.post("/wallstreetsurvivor")
+def get_last_transactions(request, params: GetTransactionsSchema):
+    transactions_list = WssAPI().get_transactions(
+        start_date=params.start_date,
+        end_date=params.end_date
+    )
+    return JsonResponse(transactions_list, safe=False)

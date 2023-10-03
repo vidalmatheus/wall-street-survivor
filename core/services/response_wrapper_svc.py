@@ -1,7 +1,6 @@
-from enum import Enum
 from functools import cached_property
 
-class Method(Enum):
+class Method:
     GET = "GET"
     POST = "POST"
 
@@ -13,7 +12,7 @@ class ResponseWrapper:
 
     @cached_property
     def raw(self):
-        return self.response.raw
+        return self.response.json()
 
     @cached_property
     def cleaned(self):

@@ -9,3 +9,4 @@ pytest
 pytest-cov
 uwsgi
 django-extensions
+django-memoize
