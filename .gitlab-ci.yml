@@ -1,0 +1,16 @@
+include:
+    - template: AWS/Deploy-ECS.gitlab-ci.yml
+
+lint:
+  stage: test
+  image: 'registry.gitlab.com/mymentum/data-connector/$CI_COMMIT_REF_NAME:latest'
+  script:
+    - inv lint
+
+test_backend:
+  stage: test
+  needs:
+    - lint
+  image: 'registry.gitlab.com/mymentum/data-connector/$CI_COMMIT_REF_NAME:latest'
+  script:
+    - pytest --cov

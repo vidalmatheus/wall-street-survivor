@@ -1,0 +1,12 @@
+Django
+pip-tools
+invoke
+sqlparse
+black
+isort
+django-ninja
+pytest
+pytest-cov
+uwsgi
+django-extensions
+django-cors-headers
