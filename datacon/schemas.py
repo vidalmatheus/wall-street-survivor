@@ -1,7 +1,7 @@
 from ninja import Schema
 
 
-class GetTransactionsSchema(Schema):
+class FetchTransactionsSchema(Schema):
     username: str
     password: str
     start_date: str

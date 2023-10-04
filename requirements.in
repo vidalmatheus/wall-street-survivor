@@ -10,3 +10,4 @@ pytest-cov
 uwsgi
 django-extensions
 django-memoize
+django-cryptography

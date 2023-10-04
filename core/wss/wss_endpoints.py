@@ -8,7 +8,8 @@ class Login(BaseRequest):
     method = Method.POST
     endpoint = "login"
 
-    def send(self, data):
+    def send(self, username, password):
+        data = {"username": username, "password": password}
         return super().send(data=data)
 
     def clean_response(self, response):

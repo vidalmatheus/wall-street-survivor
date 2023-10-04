@@ -2,12 +2,13 @@ import requests
 from requests.adapters import HTTPAdapter, Retry
 
 from core.exceptions import WssConnectionError
+from core.models import WssLogin
 from core.services.response_wrapper_svc import ResponseWrapper
 
 
 class BaseRequest:
-    def __init__(self, client):
-        self.client = client
+    def __init__(self):
+        self.cookies = {}
         self.session = self._build_session()
 
     def _build_session(self):
@@ -20,7 +21,7 @@ class BaseRequest:
         return session
 
     def _request(self, method, endpoint, params, json, data):
-        url = f"{self.client.base_url}/{endpoint}"
+        url = f"{WssLogin.BASE_URL}/{endpoint}"
         try:
             response = self.session.request(
                 method=method, url=url, params=params, json=json, cookies=self.cookies, timeout=60, data=data
@@ -41,8 +42,5 @@ class BaseRequest:
 
 class AuthenticatedBaseRequest(BaseRequest):
     def __init__(self, client):
-        super().__init__(client)
-        # self.cookies = client.get_auth_token()
-        self.cookies = {  # just testing
-            ".FASTRAKMVC": "F6E40F5BBA77C8FDFA7D327B6A6C9FB26CA42CBCD1DA5EC22781EFCF5FE0D0978249F61E5730939152405847070A1BF3A27E36878578708D92E3A5785A7B9DAB05AB6419996B8E004B27CFB43A32F6C64A184FF7BCC81B384256A9894C52FB7DAAA68A83"
-        }
+        super().__init__()
+        self.cookies = client.get_auth_token
