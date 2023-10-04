@@ -57,7 +57,7 @@ class WssAPI:
                     date_time=datetime.strptime(transaction["date_time"], "%d/%m/%Y - %H:%M"),
                 )
             )
-        Transaction.objects.bulk_create(transaciton_objects_to_create_list)
+        # Transaction.objects.bulk_create(transaciton_objects_to_create_list)
         return transacitons_list
 
     def get_last_transactions(self, quantity=12):
