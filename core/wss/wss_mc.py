@@ -1,8 +1,8 @@
 from time import time
-from types import SimpleNamespace
 
 from django.core.cache import cache
 
+from core.exceptions import WrongCredentialsError
 from core.models import WssLogin
 from core.wss.wss_endpoints import Login
 
@@ -16,6 +16,8 @@ class WssMC:
         password = WssLogin.objects.filter(username=username).values_list("password", flat=True).first()
         wss_login_resp = Login().send(username, password)
         cookies = wss_login_resp.response.request._cookies
+        if not cookies:
+            raise WrongCredentialsError
         data = dict(cookies)
         cookies_object_list = list(cookies)
         timeout = cookies_object_list[0].expires - int(time())  # seconds of timeout
