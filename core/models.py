@@ -22,6 +22,20 @@ class Transaction(models.Model):
     price_status = models.CharField(max_length=100, null=True, blank=True)
     fee = models.DecimalField(null=True, blank=True, decimal_places=2, max_digits=4)
     date_time = models.DateTimeField(null=True, blank=True)
+    timezone = timezone = models.CharField(null=True, blank=True, max_length=256)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+    class Meta:
+        unique_together = (
+            "wss_login",
+            "transaction_type",
+            "symbol",
+            "quantity",
+            "type",
+            "price_status",
+            "fee",
+            "date_time"
+        )

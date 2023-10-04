@@ -1,3 +1,4 @@
+import json
 from django.core import serializers
 from django.http import JsonResponse
 from ninja import NinjaAPI
@@ -24,5 +25,5 @@ def fetch_last_transactions(request, params: FetchTransactionsSchema):
 @api.get("/get_last_transactions")
 def get_last_transactions(request, username: str, password: str = None, quantity: int = 12):
     transactions_list = WssAPI(username=username, password=password).get_last_transactions(quantity=quantity)
-    serialized_transactions = serializers.serialize("json", transactions_list)
+    serialized_transactions = json.loads(serializers.serialize("json", transactions_list))
     return JsonResponse(serialized_transactions, safe=False)

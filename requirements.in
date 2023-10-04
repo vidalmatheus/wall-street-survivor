@@ -11,3 +11,4 @@ uwsgi
 django-extensions
 django-memoize
 django-cryptography
+pytz

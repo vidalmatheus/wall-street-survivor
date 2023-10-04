@@ -1,4 +1,5 @@
 from datetime import datetime
+from commons.dateutils import to_tz
 
 from memoize import memoize
 
@@ -43,7 +44,10 @@ class WssAPI:
         resp = wss_endpoints.GetTransactions(self).send(start_date, end_date)
         transacitons_list = resp.parsed
         transaciton_objects_to_create_list = []
+        timezone = "US/Eastern"
         for transaction in transacitons_list:
+            date_time = datetime.strptime(transaction["date_time"], "%d/%m/%Y - %H:%M")
+            date_time_tz = to_tz(date_time, timezone)
             transaciton_objects_to_create_list.append(
                 Transaction(
                     wss_login=self.wss_login_object,
@@ -54,12 +58,13 @@ class WssAPI:
                     type=transaction["type"],
                     price_status=transaction["price_status"],
                     fee=transaction["fee"],
-                    date_time=datetime.strptime(transaction["date_time"], "%d/%m/%Y - %H:%M"),
+                    date_time=date_time_tz,
+                    timezone=timezone
                 )
             )
-        # Transaction.objects.bulk_create(transaciton_objects_to_create_list)
+        Transaction.objects.bulk_create(transaciton_objects_to_create_list, ignore_conflicts=True)
         return transacitons_list
 
     def get_last_transactions(self, quantity=12):
-        transactions = Transaction.objects.filter(wss_login=self.wss_login_object).order_by("-created_at")[:quantity]
+        transactions = Transaction.objects.filter(wss_login=self.wss_login_object).order_by("-date_time")[:quantity]
         return transactions
