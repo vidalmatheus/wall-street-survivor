@@ -1,8 +1,8 @@
 from datetime import datetime
-from commons.dateutils import to_tz
 
 from memoize import memoize
 
+from commons.dateutils import to_tz
 from core.exceptions import NonePasswordError
 from core.models import Transaction, WssLogin
 from core.services import login_mc_svc
@@ -59,7 +59,7 @@ class WssAPI:
                     price_status=transaction["price_status"],
                     fee=transaction["fee"],
                     date_time=date_time_tz,
-                    timezone=timezone
+                    timezone=timezone,
                 )
             )
         Transaction.objects.bulk_create(transaciton_objects_to_create_list, ignore_conflicts=True)

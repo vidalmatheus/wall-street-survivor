@@ -1,6 +1,7 @@
 import pytz
 from django.utils import timezone
 
+
 def to_tz(d, tz):
     if d is None:
         return None

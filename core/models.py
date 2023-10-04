@@ -27,7 +27,6 @@ class Transaction(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-
     class Meta:
         unique_together = (
             "wss_login",
@@ -37,5 +36,5 @@ class Transaction(models.Model):
             "type",
             "price_status",
             "fee",
-            "date_time"
+            "date_time",
         )
