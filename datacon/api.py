@@ -4,7 +4,7 @@ from django.core import serializers
 from django.http import JsonResponse
 from ninja import NinjaAPI
 
-from core.exceptions import NonePasswordError, WrongCredentialsError
+from core.exceptions import LoginCredentialsError, NonePasswordError
 from core.wss.wss_api import WssAPI
 from datacon.schemas import FetchTransactionsSchema
 
@@ -25,7 +25,7 @@ def fetch_last_transactions(request, params: FetchTransactionsSchema):
         transactions_list = WssAPI(username=params.username, password=params.password).fetch_last_transactions(
             start_date=params.start_date, end_date=params.end_date
         )
-    except WrongCredentialsError as e:
+    except LoginCredentialsError as e:
         return JsonResponse({"message": e.message}, status=400)
     else:
         return JsonResponse(transactions_list, safe=False)

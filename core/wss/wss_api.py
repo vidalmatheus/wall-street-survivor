@@ -46,7 +46,7 @@ class WssAPI:
         transaciton_objects_to_create_list = []
         timezone = "US/Eastern"
         for transaction in transacitons_list:
-            date_time = datetime.strptime(transaction["date_time"], "%d/%m/%Y - %H:%M")
+            date_time = datetime.strptime(transaction["date_time"], "%m/%d/%Y - %H:%M")
             date_time_tz = to_tz(date_time, timezone)
             transaciton_objects_to_create_list.append(
                 Transaction(
