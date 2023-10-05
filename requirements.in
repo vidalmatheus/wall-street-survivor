@@ -1,4 +1,5 @@
 Django
+requests
 pip-tools
 invoke
 sqlparse
