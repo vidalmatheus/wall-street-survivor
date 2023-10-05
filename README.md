@@ -41,7 +41,8 @@ inv <task_name>
 ```bash
 source path/to/your/executable/python3.11.4-virtualenv
 pip install -r requirements.txt
-python ./manage runserver
+./manage.py migrate
+./manage.py runserver
 ```
 
 ### Testing:
