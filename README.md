@@ -2,6 +2,8 @@
 
 This project uses [Django Ninja](https://django-ninja.rest-framework.com/) as its core.
 
+![Alt text](image.png)
+
 
 # Python Script Documentation: tasks.py
 
