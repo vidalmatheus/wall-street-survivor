@@ -49,4 +49,3 @@ def lint(c):
 def format(c):
     c.run("isort --profile black --line-length 120 .")
     c.run("black --line-length 120 .")
-
