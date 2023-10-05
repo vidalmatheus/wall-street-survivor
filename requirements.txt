@@ -185,6 +185,7 @@ django==4.2.5 \
     #   django-extensions
     #   django-memoize
     #   django-ninja
+    #   model-bakery
 django-appconf==1.0.5 \
     --hash=sha256:ae9f864ee1958c815a965ed63b3fba4874eec13de10236ba063a788f9a17389d \
     --hash=sha256:be3db0be6c81fa84742000b89a81c016d70ae66a7ccb620cdef592b1f1a6aaa4
@@ -214,6 +215,10 @@ invoke==2.2.0 \
 isort==5.12.0 \
     --hash=sha256:8bef7dde241278824a6d83f44a544709b065191b95b6e50894bdc722fcba0504 \
     --hash=sha256:f84c2818376e66cf843d497486ea8fed8700b340f308f076c6fb1229dff318b6
+    # via -r requirements.in
+model-bakery==1.15.0 \
+    --hash=sha256:16178e608e2f414814e3383a9855e39c08810c9dee7b1d8e1354f1fdb7c013bc \
+    --hash=sha256:c76813d8836ce339df4abd8648d6ed195fd0363f395dd1cb11b8a1898224e4e7
     # via -r requirements.in
 mypy-extensions==1.0.0 \
     --hash=sha256:4392f6c0eb8a5668a69e23d168ffa70f0be9ccfd32b5cc2d26a34ae5b844552d \
@@ -297,6 +302,10 @@ pytest==7.4.2 \
 pytest-cov==4.1.0 \
     --hash=sha256:3904b13dfbfec47f003b8e77fd5b589cd11904a21ddf1ab38a64f204d6a10ef6 \
     --hash=sha256:6ba70b9e97e69fcc3fb45bfeab2d0a138fb65c4d0d6a41ef33983ad114be8c3a
+    # via -r requirements.in
+pytz==2023.3.post1 \
+    --hash=sha256:7b4fddbeb94a1eba4b557da24f19fdf9db575192544270a9101d8509f9f43d7b \
+    --hash=sha256:ce42d816b81b68506614c11e8937d3aa9e41007ceb50bfdcb0749b921bf646c7
     # via -r requirements.in
 sqlparse==0.4.4 \
     --hash=sha256:5430a4fe2ac7d0f93e66f1efc6e1338a41884b7ddf2a350cedd20ccc4d9d28f3 \
