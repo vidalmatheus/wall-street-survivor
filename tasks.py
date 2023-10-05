@@ -50,13 +50,3 @@ def format(c):
     c.run("isort --profile black --line-length 120 .")
     c.run("black --line-length 120 .")
 
-
-@projtask
-def dkbuild(c):
-    c.run("docker build -t mydjango .")
-
-
-@projtask
-def dkrun(c):
-    c.run("docker rm mydjango")
-    c.run("docker run -p 8000:8000 --name mydjango mydjango")
