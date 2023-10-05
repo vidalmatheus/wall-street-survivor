@@ -3,7 +3,6 @@ from datetime import datetime
 from memoize import memoize
 
 from commons.dateutils import to_tz
-from core.exceptions import NonePasswordError
 from core.models import Transaction, WssLogin
 from core.services import login_mc_svc
 from core.wss import wss_endpoints
@@ -28,8 +27,6 @@ class WssAPI:
         self.password = wss_login_object.password
 
     def _create_wss_login(self, password):
-        if not password:
-            raise NonePasswordError
         return WssLogin.objects.create(username=self.username, password=password)
 
     @property
@@ -64,7 +61,3 @@ class WssAPI:
             )
         Transaction.objects.bulk_create(transaciton_objects_to_create_list, ignore_conflicts=True)
         return transacitons_list
-
-    def get_last_transactions(self, quantity=12):
-        transactions = Transaction.objects.filter(wss_login=self.wss_login_object).order_by("-date_time")[:quantity]
-        return transactions

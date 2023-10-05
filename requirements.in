@@ -7,6 +7,8 @@ isort
 django-ninja
 pytest
 pytest-cov
+pytest-mock
+pytest-freezegun
 model-bakery
 uwsgi
 django-extensions

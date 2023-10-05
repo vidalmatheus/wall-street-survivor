@@ -24,4 +24,3 @@ def test_to_tz_datetime_with_tz():
     tz_2 = "America/Sao_Paulo"
     d_tz_2 = dateutils.to_tz(d_tz_1, tz_2)
     assert d_tz_2.tzinfo.zone == tz_2
-

@@ -12,12 +12,6 @@ class Login(BaseRequest):
         data = {"username": username, "password": password}
         return super().send(data=data)
 
-    def clean_response(self, response):
-        return response
-
-    def parse_response(self, clean_response):
-        return clean_response
-
 
 class GetTransactions(AuthenticatedBaseRequest):
     method = Method.GET

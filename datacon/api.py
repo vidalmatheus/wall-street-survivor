@@ -4,7 +4,8 @@ from django.core import serializers
 from django.http import JsonResponse
 from ninja import NinjaAPI
 
-from core.exceptions import LoginCredentialsError, NonePasswordError
+from core.exceptions import LoginCredentialsError, UnknowUsernameError
+from core.services import transactions_svc
 from core.wss.wss_api import WssAPI
 from datacon.schemas import FetchTransactionsSchema
 
@@ -32,13 +33,13 @@ def fetch_last_transactions(request, params: FetchTransactionsSchema):
 
 
 @api.get("/get_last_transactions")
-def get_last_transactions(request, username: str, quantity: int = 3):
+def get_last_transactions(request, username: str, max_quantity: int = 3):
     """
     Get last transactions from an username stored in the database
     """
     try:
-        transactions_list = WssAPI(username=username).get_last_transactions(quantity=quantity)
-    except NonePasswordError as e:
+        transactions_list = transactions_svc.get_last_transactions(username=username, max_quantity=max_quantity)
+    except UnknowUsernameError as e:
         return JsonResponse({"message": e.message}, status=400)
     else:
         serialized_transactions = json.loads(serializers.serialize("json", transactions_list))

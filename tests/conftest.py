@@ -1,18 +1,22 @@
 import pytest
+from django.core.cache import cache
 from model_bakery import baker
 
-from core.models import WssLogin, Transaction
+from core.models import Transaction, WssLogin
 from core.wss.wss_api import WssAPI
-from core.wss.wss_endpoints import (
-    Login as WssLoginRequestObject,
-    GetTransactions as WssFetchTransactionsRequestObject,
-)
+from core.wss.wss_endpoints import GetTransactions as WssFetchTransactionsRequestObject
+from core.wss.wss_endpoints import Login as WssLoginRequestObject
 from tests.mock_data_response import mock_response_wss_fetch_transactions
 
 
 @pytest.fixture(autouse=True)
 def db_autouse(db):
     pass
+
+
+@pytest.fixture(autouse=True)
+def clear_cache():
+    cache.clear()
 
 
 @pytest.fixture
@@ -62,6 +66,11 @@ def mock_wss_login_credentals_error(requests_mock, wss_api):
         ),
         status_code=200,
     )
+
+
+@pytest.fixture
+def mock_wss_login_connection_error(requests_mock, wss_api):
+    return requests_mock.post(url=f"{WssLogin.BASE_URL}/{WssLoginRequestObject.endpoint}", exc=ConnectionError)
 
 
 @pytest.fixture

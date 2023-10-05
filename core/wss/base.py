@@ -26,9 +26,9 @@ class BaseRequest:
             response = self.session.request(
                 method=method, url=url, params=params, json=json, cookies=self.cookies, timeout=60, data=data
             )
-        except ConnectionError as ex:
+        except ConnectionError:
             error_msg = f"wss {method} {url} with {params=} {json=} {data=} connection error"
-            raise WssConnectionError(error_msg) from ex
+            raise WssConnectionError(error_msg)
 
         response.raise_for_status()
 
